@@ -59,32 +59,4 @@ private:
     std::mutex m_mutex;
 };
 
-}
-
-int main() {
-    // Initialize a buffer with some data
-    Star::ByteArray byteArray(100, 'a');
-    Star::HyperBuffer buffer(byteArray);
-
-    // Buffer to read data into
-    char readBuffer[100];
-
-    // Perform parallel read with 4 threads
-    buffer.parallelRead(readBuffer, 100, 4);
-
-    // Check read result
-    std::cout << "Data read: " << std::string(readBuffer, 100) << std::endl;
-
-    // Data to write
-    char writeBuffer[100];
-    std::fill_n(writeBuffer, 100, 'b');
-
-    // Perform parallel write with 4 threads
-    buffer.parallelWrite(writeBuffer, 100, 4);
-
-    // Perform parallel read again to check the write
-    buffer.parallelRead(readBuffer, 100, 4);
-    std::cout << "Data read after write: " << std::string(readBuffer, 100) << std::endl;
-
-    return 0;
-}
+};
